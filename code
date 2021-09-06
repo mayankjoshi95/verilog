@@ -50,3 +50,38 @@ begin
  c=a&b;##there is no assign before c.
 end 
 endmodule
+
+always #50  a=~a;
+always #20 b=~b;
+
+
+
+##BLOCKING ASSIGNMENT 
+
+c=a&b;
+#20;
+d=a|b;
+#20
+
+e=a&b;
+end 
+endmodule
+#thus in case of blocking operator we operate sequentially 
+#non blocking 
+
+c=a&b;
+#20;
+d=a|b;
+#20
+
+e=a&b;
+end 
+endmodule
+
+##here they operate in a parallel manner 
+
+use output with reg datatype .
+
+
+
+
