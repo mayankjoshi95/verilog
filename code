@@ -31,6 +31,9 @@ reg b=1;
 reg c//with reg data type the suitable assignment which is allowed is the wire data type
 c=a&b;
 endmodule
+#use of initial constructs to initialized reg variable 
+
+#use of intial is to genrate an arrbitrary random stimuli
 
 module tb();
 reg a=1;
@@ -82,6 +85,16 @@ endmodule
 
 use output with reg datatype .
 
+##test bench 
 
-
-
+module tb();
+reg a=0;
+initial begin 
+a=0;
+end 
+always #5 a=~a;
+initial begin
+#1000;
+$finish;
+end 
+endmodule
