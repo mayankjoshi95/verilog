@@ -5,3 +5,48 @@ operators in verilog
 (a==b)?(b:c);
 to declare soome undefined net there we prefer the wire .
 #to define a temporary variable we start with the 'reg a'it will create a single bit reg variable and a multi bit reg variable .
+#integer a;
+#time 
+#real a=2.3
+#reg a =5'b01010;
+5 is the size .
+
+#assignment operator
+LHS side we have input port and RHS side output port 
+#how you assign value to an output port 
+
+
+1.contiinuos assignment :-as soon as any value on HRS change your LHS will be updated and to specify continuos assignment we use assign keyword.
+#for combinational circuit
+2.procedural assignment :-it wait for an event to happen and once tht event happen value of an RHS will be changing and then LH changes i.e we will not see any change in input and output 
+until we receive any change in clock.
+##further to two classes it can either be blocking or it can be non blocking .
+##sequential circuit
+
+#continuos assignment 
+
+module tb();
+reg a=1;
+reg b=1;
+reg c//with reg data type the suitable assignment which is allowed is the wire data type
+c=a&b;
+endmodule
+
+module tb();
+reg a=1;
+reg b=1;
+wire  c//with reg data type the suitable assignment which is allowed is the wire data type
+c=a&b;
+endmodule
+
+
+#in procedural assignmetn we us e the reg data type 
+module tb();
+reg a=1;
+reg b=1;
+reg  c;
+always@(a)//with reg data type the suitable assignment which is allowed is the wire data type
+begin
+ c=a&b;##there is no assign before c.
+end 
+endmodule
