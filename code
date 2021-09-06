@@ -1,0 +1,5 @@
+reg data type cannot be used in the dut or uut .
+operators in verilog 
+~ is the negation is the unary operator
+& to perform and operation binary opreerator
+(a==b)?(b:c);
