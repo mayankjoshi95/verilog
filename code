@@ -98,3 +98,91 @@ initial begin
 $finish;
 end 
 endmodule
+
+
+
+#hw to connect the design under test and DUT
+MODULE TOP(
+INPUT [3:0] DIN,
+OUTPUT [3:0] DOUT);
+ASSIGN DOUT=DIN;
+ENDMODILE
+
+
+module tb();
+reg[3:0] din;
+wire [3:0] dout ;##it should not be intialized
+initial begin#intialize all the reg data type
+din=0;
+end
+top uut(din,dout);#imlicit
+top uut(.din(din),.dout(dout))
+
+
+##use of struuctural modelling style 
+
+module ha(input a,b,
+output s,c);
+assign s=a^b;
+assign c=a&b;
+
+
+module fa (input a,b,cin,
+   output sout,cout);
+   
+wire t1,t2,t3;
+ha h1(a,b,t1,t2)
+ha h2(.s(sout),.c(t3),.a(cin),.b(t1))
+assign cout= t3|t2;
+
+   
+endmodule   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
