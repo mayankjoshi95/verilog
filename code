@@ -3,3 +3,5 @@ operators in verilog
 ~ is the negation is the unary operator
 & to perform and operation binary opreerator
 (a==b)?(b:c);
+to declare soome undefined net there we prefer the wire .
+#to define a temporary variable we start with the 'reg a'it will create a single bit reg variable and a multi bit reg variable .
