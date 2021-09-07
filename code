@@ -1,14 +1,23 @@
+##general procedure for verilog
+module ();
+logic
+endmodule
 reg data type cannot be used in the dut or uut .
 operators in verilog 
 ~ is the negation is the unary operator
 & to perform and operation binary opreerator
 (a==b)?(b:c);
 to declare soome undefined net there we prefer the wire .
-#to define a temporary variable we start with the 'reg a'it will create a single bit reg variable and a multi bit reg variable .
+#to define a temporary variable we start with the 'reg a'it will create a single bit reg variable and a multi bit reg variable i.e a single flip flop or a multi bit flip lflop
 #integer a;
 #time 
 #real a=2.3
-#reg a =5'b01010;
+reg[4:0] a=1010 #by default we have a deecimal number and here we are taking the binary values as decimal 
+
+##so foramt is 
+// size ,base we are planning to feed the number in 'b'#binary format  'h'#hexa format 
+#reg[4:0] a =5'b01010;#here data we are feeding is 5 bit it is in binary format it is 10100
+##size is 5 since our variable is of 5 then hexa or decimal then put the values
 5 is the size .
 
 #assignment operator
@@ -39,7 +48,7 @@ module tb();
 reg a=1;
 reg b=1;
 wire  c//with reg data type the suitable assignment which is allowed is the wire data type
-c=a&b;
+assign c=a&b;
 endmodule
 
 
@@ -137,6 +146,10 @@ assign cout= t3|t2;
 
    
 endmodule   
+
+
+##constraints consitss of mapping of our io port to fpga io ports .
+
 
 
 
