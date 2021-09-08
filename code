@@ -204,7 +204,10 @@ end
 end 
 
 
-
+##'timescale  1 ns ,1ps
+#10 means delay added is 10 ns
+'timescale 1ps/1ps 
+#30 delay we add is 30 ps 
 
 
 #hw to connect the design under test and DUT
