@@ -96,17 +96,60 @@ use output with reg datatype .
 
 ##test bench 
 
+
 module tb();
 reg a=0;
 initial begin 
 a=0;
 end 
-always #5 a=~a;
+always #5 a=~a;##thsi is  ahalf clock period .
 initial begin
 #1000;
-$finish;
+$finish;##this will forcefully stop our simulator
 end 
 endmodule
+initial begin 
+##so whenever you are required to generate an arbitrary wave signal initial bbegin is very important .
+##or t create a random signal which are multi bit there also intial begin is very very useful
+##to have the value of the variable in the console which help in the debugging scenario 
+
+##whereever you have a situtation where you wwnat to print the value at a specific line there display is qquite usefull
+##monitor is used to display the values of the variable as soon as it changes its value 
+
+
+
+
+
+module tb();
+reg a;
+initial begin
+a=0;
+#10;
+a=1;
+$display("value of a with display:0%b",a);
+#20;
+a=0;
+#10;
+a=1;
+#20;
+
+end
+initial begin//to add the monitor we simly use initial begin 
+$monitor("value of a with monitor:0%b",a);///monitor will print four values of a diplay will print value of a at that line
+end 
+endmodule
+value of a with monitor:00
+value of a with display:01
+value of a with monitor:01
+value of a with monitor:00
+value of a with monitor:01
+
+##in the tcl console we have the value of the monitor
+
+##use of task in the bench 
+
+##task can also operate on reg data type which we have declared outside the task.
+
 
 
 
