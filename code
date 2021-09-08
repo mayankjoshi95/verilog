@@ -250,8 +250,27 @@ endmodule
 
 ##constraints consitss of mapping of our io port to fpga io ports .
 
+##parameter gives the provision through which we can cahnge the value of input and output 
 
 
+module nbitcounter
+#(parameter N= 4 
+)
+(input clk,
+input start ,
+output[N-1:0] q
+);
+reg [N-1:0]temp;
+
+initial temp=0;
+always@(posedge clk) begin
+if(start==1'b1)
+temp<=temp+1;
+else 
+temp<=0;
+
+end
+endmodule
 
 
 
