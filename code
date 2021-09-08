@@ -150,6 +150,60 @@ value of a with monitor:01
 
 ##task can also operate on reg data type which we have declared outside the task.
 
+module tb();
+ 
+reg wr; //wr  = 1 writing data to RAM wr =1 write else read 
+reg en;// en = 1 
+reg [7:0] addr;
+reg [7:0] din;
+ 
+reg clk = 0;
+always #10 clk = ~clk;
+ 
+task datawr();
+begin
+@(posedge clk);//for one clk only 
+en = 1;
+wr = 1;
+addr = $random;
+din = $random;
+end
+endtask
+ 
+initial begin
+repeat(3) begin
+datawr();
+end
+end
+ 
+initial begin
+#100;
+$finish;
+end 
+endmodule
+
+
+
+##understanding the pseudo random number generator //we declare 4 variable of variant size 
+module tb();
+reg[31:0] d1 ;
+reg [15:0] d2;
+reg[7:0] d3;
+reg d4;
+///stimuli with the signed number there we have a $ random ,unsigned random $urandom_range(max,min)
+initial begin
+d1=$random();
+d2=$random();
+d3=$random();
+d4=$random();
+end
+initial begin
+$monitor("d1:%0d,d2:%0d,d3:%0d,d4:%0d",d1,d2,d3,d4);
+end
+
+end 
+
+
 
 
 
