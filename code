@@ -332,6 +332,168 @@ assign c=addition(a,b);
 endmodule
 
 
+##how to write recursive function in an verilog 
+
+module fact();
+function automatic [7:0] factorial(input [7:0] i);;
+ if (i==1)
+ factorial =1
+ else 
+ factorial = i*factorial (i-1)
+ end function
+ initial begin
+ $display ("the value of the factorial is %0d",factorial (3));
+end 
+endmodule
+
+
+##FSM 
+
+
+#Mooore depend on the present state
+#mealy depend on the present state and input that we are applying
+
+##FSM can be used as the sequence detector
+
+##here we can foollow one ,two ,three process methodology 
+t implement FSM three things are required 
+1.next state
+2. output decoder 
+3. reset decoder logic
+
+
+
+in three process methodology we have an always block for all next state ,output decoder,reset decoder logic .
+in 2 process methodoology we have an always block for next state and an always block for output decode and reset decoder logic .
+in 1 process methodology we have one block for all the three
+
+
+3 process methology
+module top(input clk ,rst,din,
+output reg dout
+);
+parameter state0 =0;
+parameter state1=1;
+reg state ,next_state;
+//reset logic //for 3 process methodology only reset logic is synchronous
+always@(posedge clk or posedge rst)
+begin
+if (rst)
+state<=state0;
+else
+state<=next_state;
+end 
+//next state decoder
+always@(state or din)///next state depend on input as well the state in which we are 
+begin
+case(state)
+state0:if(din)
+next_state= state1;
+else 
+next_state=state0;
+end 
+endcase 
+end
+//output decoder
+always@(state)
+begin
+case(state)
+state0:dout=1'b0;
+state1:dout=1'b1;
+endcase
+endmodule
+///instead of force constant we can put the test bench .
+
+module tb();
+reg clk ,rst,din ;
+wire dout ;
+initial begin 
+clk=0;
+rst=1;
+din=0;
+end
+
+always #5 clk=~clk;
+initial begin
+#20 ;
+rst=0;
+din=1;
+#200;
+$finish;
+end 
+endmodule
+
+##2 process methodology
+
+module top(input clk ,rst,din,
+output reg dout
+);
+parameter state0 =0;
+parameter state1=1;
+reg state ,next_state;
+//reset logic //for 3 process methodology only reset logic is synchronous
+always@(posedge clk or posedge rst)
+begin
+if (rst)
+state<=state0;
+else
+state<=next_state;
+end 
+//next state decoder
+always@(state or din)///next state depend on input as well the state in which we are 
+begin
+case(state)
+state0:begin
+dout=1'b0;
+if(din)
+next_state= state1;
+else 
+next_state=state0;
+end 
+state1:begin
+dout=1'b1;
+if(din)
+next_state= state0;
+else
+next_state=state1;
+end 
+endcase 
+endmodule
+
+#1 process methodology 
+
+module top(input clk ,rst,din,
+output reg dout
+);
+parameter state0 =0;
+parameter state1=1;
+reg state ,next_state;
+//reset logic //for 3 process methodology only reset logic is synchronous
+always@(posedge clk or posedge rst)
+begin
+if (rst) begin
+state<=state0;
+dout<=0;
+end
+else begin
+case(state)
+state0:begin
+dout=1'b0;
+if (din)
+state<=state1;
+else 
+state<=state0;
+end
+state1:begin
+dout=1'b1;
+if (din)
+state<=state0;
+else 
+state<=state1;
+end
+endcase
+end 
+
 
 
 
