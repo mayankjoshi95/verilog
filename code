@@ -540,9 +540,71 @@ CLICKING ON PLUS WILL SHHOW A VENDOR SPECIFIC IP OR 3 RD PARTY IP
 
 ##now if you click on the plus button and see the top you will automatically see the ip.
 
+##thus the benefit of just dragging your ip from create and package is that we can configure our parameter in the latter case.
+
+
+#if ip is presnt in different project 
+ip setting 
+repository 
+go to + select project 33 folder
+
+
+##for input and output to be configurable 
+
+module and_vector ( input [width-1 :0] a,b,
+                     output[ width -1:0] y);
+  parameter width =4;##it will show an error that the names are use before there declaration 
+  
+ module and_vector ( a,b,y);
+  parameter width =4; 
+input [width-1 :0] a,b;
+                     output[ width -1:0] y;
+assign y=a&b;
+endmodule
+
+
+using customization parameter and right clck on the widht with the edit ip we can customize the width 
+
+after converting ip design hhdl wrapper
+
+#3make the port external 
+
+##using the test benc we can give the values to the port 
 
 
 
+module tb();
+reg ce,clk,up,load;
+reg [15:0] l;
+reg [15:0] q;
+initial begin
+ce=0;
+clk=0;
+up=0;
+load=0;
+l=0;
+end 
+design_1_wrapper uut(ce,clk,l,load,q,up);
+always #5 clk=~clk;
+intial begin 
+#20 
+ce=1;
+load =1;
+l=5;;
+#10;
+load= 0;
+up=1;
+
+#100;
+up=0;
+#100;
+ce=0;
+end 
+initial begin
+#500
+$finish ;
+end 
+endmodule 
 
 
 
