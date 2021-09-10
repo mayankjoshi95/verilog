@@ -392,14 +392,19 @@ next_state= state1;
 else 
 next_state=state0;
 end 
+state1:if(din)
+next_state= state0;
+else 
+next_state=state1;
+end 
 endcase 
 end
 //output decoder
-always@(state)
+always@(state)// for mealy always@(state,din)
 begin
 case(state)
-state0:dout=1'b0;
-state1:dout=1'b1;
+state0:dout=1'b0;  //state0 : begin if(din) dout=1'b1; else dout=1'b0;
+state1:dout=1'b1;//state1 : begin if(din) dout=1'b0; else dout=1'b1;
 endcase
 endmodule
 ///instead of force constant we can put the test bench .
@@ -493,6 +498,7 @@ state<=state1;
 end
 endcase
 end 
+endmodule
 
 
 
@@ -501,6 +507,38 @@ end
 
 
 
+
+##design entry in the vivado 
+it has 
+1. text based approach verilog ,VHDL , system verilog.
+2.using the schematic 
+3. embedded
+4. GENERATED NETLIST POST SYNTHESIS DESIGN 
+
+
+fur thing to learn 
+
+
+1. how we concvert our code based approach to schematic 
+2.use vendor specific IP
+3.integrate vendor specific IP's with user IP's
+4 with schematic hpw we utilize an FPGA design flow with it 
+5.how we can add configuration parameter to our IP so that they can be used inn wide variety of application
+
+
+IP INTEGRATOR :- IT IS FOR THE SCHEMATIC BASED APPROACH 
+
+CLICKING ON PLUS WILL SHHOW A VENDOR SPECIFIC IP OR 3 RD PARTY IP
+
+#RUN CONNECTION AUTOMATION IS VERY USED IN EMBEDDED FOR RTL WE SHOULD PERFORM ALL THE CONNECTIONS MANUALLY AND WE SHOULD LESS USE THE RUN CONNECTION AUTOMATION
+
+##for our source file to create an ip is very simple is to go to create new package ip
+
+##package your current ip will package our IP to current project
+
+##then we review and package our ip then we package our ip 
+
+##now if you click on the plus button and see the top you will automatically see the ip.
 
 
 
